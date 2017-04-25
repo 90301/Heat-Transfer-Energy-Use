@@ -24,6 +24,14 @@ import com.vaadin.ui.VerticalLayout;
 public class MainUI extends UI {
 
 	HorizontalLayout topLayout = new HorizontalLayout();
+	{
+		//set component settings
+		
+		//set events
+		
+		//set up layouts
+	}
+	
     @Override
     protected void init(VaadinRequest vaadinRequest) {
         
