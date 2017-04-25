@@ -13,6 +13,8 @@ import com.vaadin.ui.TextField;
 import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
 
+import simulation.Simulation;
+
 /**
  * This UI is the application entry point. A UI may either represent a browser window 
  * (or tab) or some part of a html page where a Vaadin application is embedded.
@@ -24,6 +26,7 @@ import com.vaadin.ui.VerticalLayout;
 public class MainUI extends UI {
 
 	HorizontalLayout topLayout = new HorizontalLayout();
+	Label output = new Label();
 	{
 		//set component settings
 		
@@ -34,7 +37,12 @@ public class MainUI extends UI {
 	
     @Override
     protected void init(VaadinRequest vaadinRequest) {
-        
+    	
+    	Simulation s = new Simulation();
+    	s.testCode();
+    	s.simDay();
+        output.setCaption("energy cost for 1 day: " + s.totalEnergyCost);
+        topLayout.addComponent(output);
         setContent(topLayout);
     }
 

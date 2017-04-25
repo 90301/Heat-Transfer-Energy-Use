@@ -1,4 +1,7 @@
 package heatSource;
+
+import utils.InhalerMath;
+
 /**
  * Holder for all the heat transfer sources
  * (Basically the sun and temp outside)
@@ -11,21 +14,26 @@ public class HeatSource {
 	//follows bell curve
 	
 	
+	//SUN info.
 	Double percentSun = 1.0;
+	
+	//probably won't change for now, later on it will
 	Double sunRise = 7.0;
 	Double sunSet = 12+8.0;
-	//follows a bell curve
+	//follows a Sharp bell curve
+	// 0 ---> sun rise (.5) --> 1.0 --> .5 (sunset) --> 0
 	
 	
 	
 	
 	
 	
+	public Double getOutsideTempForHour(int hour) {
+		return InhalerMath.get24HourBellCurveValue(hour, lowTemp, highTemp);
+	}
 	
 	
-	
-	
-	//getters /setters
+	//generated getters /setters
 	public Double getHighTemp() {
 		return highTemp;
 	}
@@ -56,6 +64,7 @@ public class HeatSource {
 	public void setSunSet(Double sunSet) {
 		this.sunSet = sunSet;
 	}
+
 	
 	
 
