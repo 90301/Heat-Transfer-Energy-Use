@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import heatSource.HeatSource;
 import heatSource.MonthClimateData;
+import heatSource.YearClimate;
 import internal.InternalConditions;
 import materials.Material;
 
@@ -19,6 +20,8 @@ public class Simulation {
 	
 	MonthClimateData monthClimateData = new MonthClimateData();
 	
+	YearClimate yearClimate = new YearClimate();
+	
 	public Double totalEnergyCost = 0.0;
 	
 	public void testCode() {
@@ -30,9 +33,13 @@ public class Simulation {
 	
 	public void simYear() {
 		//simulate 12 months
+		for (int i=0;i<12;i++) {
+			monthClimateData = yearClimate.getMonth(i);
+			simMonth(i);
+		}
 	}
 	
-	public void simMonth() {
+	public void simMonth(int month) {
 		for (int i=0;i<30;i++) {
 			simDay(i);
 		}

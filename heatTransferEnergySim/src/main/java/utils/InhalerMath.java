@@ -12,6 +12,17 @@ public class InhalerMath {
 		
 	}
 	
+	public static Double getBellCurveValue(int hour, Double min, Double max,int midPoint ) {
+		//assumes max occurs at mid point
+		double difference = max - min;
+		int distanceFromMid = Math.abs(hour-midPoint);
+		//100% max value at 12, 0% difference at 0
+		double ratioToAdd = difference * distanceFromMid*1000/12000;
+		
+		return min + ratioToAdd;
+		
+	}
+	
 	public static Double getLinearScale(int scaleVal,int scaleMax, Double min, Double max) {
 		
 		double difference = max - min;
