@@ -11,4 +11,16 @@ public class InhalerMath {
 		return min + ratioToAdd;
 		
 	}
+	
+	public static Double getLinearScale(int scaleVal,int scaleMax, Double min, Double max) {
+		
+		double difference = max - min;
+		
+		Double distanceFromMax = (double) ((double)(scaleVal*1000)/((double)scaleMax*1000));
+		
+		double ratioToAdd = difference * distanceFromMax;
+		
+		
+		return min + ratioToAdd;
+	}
 }

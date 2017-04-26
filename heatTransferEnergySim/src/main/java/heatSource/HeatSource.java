@@ -18,18 +18,42 @@ public class HeatSource {
 	Double percentSun = 1.0;
 	
 	//probably won't change for now, later on it will
-	Double sunRise = 7.0;
-	Double sunSet = 12+8.0;
+	int sunRise = 7;
+	int sunSet = 12+8;
 	//follows a Sharp bell curve
 	// 0 ---> sun rise (.5) --> 1.0 --> .5 (sunset) --> 0
 	
 	
-	
+	public static final Double SOLAR_CONSTANT = 429.7;
 	
 	
 	
 	public Double getOutsideTempForHour(int hour) {
 		return InhalerMath.get24HourBellCurveValue(hour, lowTemp, highTemp);
+	}
+	
+	/**
+	 * 
+	 * @param hour
+	 * @return the BTUs per ft^2 of the sun
+	 */
+	public Double getSunPower(int hour) {
+		Double sunPower = 0.0;
+		if (hour < sunRise || hour > sunSet) {
+			//no sun
+		} else {
+			double mult = 0.0;
+			if (hour==sunRise || hour==sunSet) {
+				mult = .5;
+			} else {
+				mult = 1;
+			}
+			
+			sunPower = mult * percentSun * SOLAR_CONSTANT;
+		}
+		
+		
+		return sunPower;
 	}
 	
 	
@@ -52,16 +76,16 @@ public class HeatSource {
 	public void setPercentSun(Double percentSun) {
 		this.percentSun = percentSun;
 	}
-	public Double getSunRise() {
+	public int getSunRise() {
 		return sunRise;
 	}
-	public void setSunRise(Double sunRise) {
+	public void setSunRise(int sunRise) {
 		this.sunRise = sunRise;
 	}
-	public Double getSunSet() {
+	public int getSunSet() {
 		return sunSet;
 	}
-	public void setSunSet(Double sunSet) {
+	public void setSunSet(int sunSet) {
 		this.sunSet = sunSet;
 	}
 

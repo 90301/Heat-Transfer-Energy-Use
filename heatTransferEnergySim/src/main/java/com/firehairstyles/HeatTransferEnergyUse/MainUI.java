@@ -40,8 +40,8 @@ public class MainUI extends UI {
     	
     	Simulation s = new Simulation();
     	s.testCode();
-    	s.simDay();
-        output.setCaption("energy cost for 1 day: " + s.totalEnergyCost);
+    	s.simMonth();
+        output.setCaption("energy cost for 1 month: " + s.totalEnergyCost);
         topLayout.addComponent(output);
         setContent(topLayout);
     }

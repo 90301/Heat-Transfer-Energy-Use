@@ -23,13 +23,13 @@ public class InternalConditions {
 		
 		if (heatTransferedIn>0) {
 			//run AC
-			cost = heatTransferedIn/SEER*costPerKWH;
+			cost = heatTransferedIn/SEER/1000*costPerKWH;
 		} else {
 			//run heat
 			if (gasHeated) {
 				cost = heatTransferedIn/BTU_PER_THERM*costPerTherm;
 			} else {
-			cost = heatTransferedIn/HSPF*costPerKWH;
+			cost = heatTransferedIn/HSPF/1000*costPerKWH;
 			}
 		}
 		

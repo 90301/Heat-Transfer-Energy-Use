@@ -15,7 +15,17 @@ public class Material {
 	Double passthrough = 1.0;
 	//must add up to ~1
 	
-	
+	public Double getSunHeat(Double sunPower) {
+		//TODO improve realism of this
+		Double heat;
+		if (rValue <=1) {
+		 heat = sunPower * (passthrough + absorbstion)*sqFt;
+		} else {
+			heat = sunPower * (passthrough + absorbstion/rValue)*sqFt;
+		}
+		
+		return heat;
+	}
 	
 	
 	//generated getters / setters
@@ -49,6 +59,7 @@ public class Material {
 	public void setPassthrough(Double passthrough) {
 		this.passthrough = passthrough;
 	}
+
 	
 	
 	
