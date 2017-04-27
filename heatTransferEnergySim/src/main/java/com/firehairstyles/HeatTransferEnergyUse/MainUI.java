@@ -12,6 +12,7 @@ import com.vaadin.ui.Label;
 import com.vaadin.ui.TextField;
 import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
+import com.vaadin.ui.Window;
 
 import simulation.Simulation;
 
@@ -26,6 +27,10 @@ import simulation.Simulation;
 public class MainUI extends UI {
 
 	HorizontalLayout topLayout = new HorizontalLayout();
+	Button createMaterialButton = new Button("Create Material", e -> createMaterialShow());
+	
+	Window createMaterialWindow = new Window("Create Material",new MaterialEditorUI());
+	
 	Label output = new Label();
 	{
 		//set component settings
@@ -43,10 +48,18 @@ public class MainUI extends UI {
     	s.simYear();
         output.setCaption("energy cost for 1 Year: " + s.totalEnergyCost);
         topLayout.addComponent(output);
+        
+        topLayout.addComponent(createMaterialButton);
         setContent(topLayout);
     }
 
-    @WebServlet(urlPatterns = "/*", name = "MainUIServlet", asyncSupported = true)
+    private void createMaterialShow() {
+    	if (!this.getUI().getWindows().contains(createMaterialWindow)) {
+    		this.getUI().addWindow(createMaterialWindow);
+    	}
+	}
+
+	@WebServlet(urlPatterns = "/*", name = "MainUIServlet", asyncSupported = true)
     @VaadinServletConfiguration(ui = MainUI.class, productionMode = false)
     public static class MainUIServlet extends VaadinServlet {
     }

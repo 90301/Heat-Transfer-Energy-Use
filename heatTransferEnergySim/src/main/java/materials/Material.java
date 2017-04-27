@@ -14,6 +14,9 @@ public class Material {
 	Double absorbstion = 0.0;
 	Double passthrough = 1.0;
 	//must add up to ~1
+	int sunStart = 9;
+	int sunEnd = 15;
+	//time this material is in the sun.
 	
 	public Double getSunHeat(Double sunPower) {
 		//TODO improve realism of this
