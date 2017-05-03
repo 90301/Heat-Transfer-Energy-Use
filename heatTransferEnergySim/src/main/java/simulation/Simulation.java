@@ -24,6 +24,8 @@ public class Simulation {
 	
 	public Double totalEnergyCost = 0.0;
 	
+	public DataLogger dataLogger = new DataLogger();
+	
 	public void testCode() {
 		Material windows = new Material();
 		
@@ -40,6 +42,9 @@ public class Simulation {
 	}
 	
 	public void simMonth(int month) {
+		
+		dataLogger.nextDataMonth();
+		
 		for (int i=0;i<30;i++) {
 			simDay(i);
 		}
@@ -67,6 +72,9 @@ public class Simulation {
 			Double heatTransferSun = m.getSunHeat(sunPower);
 			
 			totalHeatTransferedIn += heatTransfer + heatTransferSun;
+			
+			//LOG DATA
+			dataLogger.logMaterialHeatTransfer(m, heatTransfer,heatTransferSun);
 		}
 		
 		
